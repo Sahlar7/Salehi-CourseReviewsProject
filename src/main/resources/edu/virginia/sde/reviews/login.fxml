@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.LoginController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <TextField fx:id="username" layoutX="200.0" layoutY="148.0" prefHeight="34.0" prefWidth="192.0" promptText="Username" />
+                <Label alignment="CENTER" layoutX="189.0" layoutY="69.0" prefHeight="53.0" prefWidth="214.0" text="Please Login" textAlignment="CENTER">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>
+                <Button fx:id="login" layoutX="273.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+                <Button fx:id="createAccount" layoutX="247.0" layoutY="317.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account" />
+            <PasswordField fx:id="password" layoutX="200.0" layoutY="212.0" prefHeight="34.0" prefWidth="192.0" promptText="Password" />
+            <CheckBox fx:id="togglePassword" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" onAction="#togglePassword" text="Show Password" />
+            <TextField fx:id="passwordVisible" layoutX="200.0" layoutY="212.0" prefHeight="34.0" prefWidth="192.0" promptText="Password" visible="false" />
+            <DialogPane fx:id="errorPopup" layoutX="120.0" layoutY="186.0" style="-fx-background-color: #bec3cc;" visible="false" />
+            <Button fx:id="okButton" layoutX="422.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleErrorClose" text="Close" visible="false" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
