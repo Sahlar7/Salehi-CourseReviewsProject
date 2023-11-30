@@ -15,20 +15,12 @@ public class User {
     @Column(name="PASSWORD", nullable = false, length = 32)
     private String password;
 
-    @Column(name = "FIRST_NAME", nullable = false)
-    private String firstName;
-
-    @Column(name = "LAST_NAME", nullable = false)
-    private String lastName;
-
     @OneToMany(mappedBy = "id")
     private List<Review> reviews;
 
-    public User(String username, String password, String firstName, String lastName) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public User() {
@@ -59,22 +51,6 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public List<Review> getReviews() {
         return reviews;
     }
@@ -83,11 +59,4 @@ public class User {
         this.reviews = reviews;
     }
 
-    @Override
-    public String toString() {
-        return "State{" +
-                "username=" + username +
-                ", name='" + firstName + " " + lastName +
-                '}';
-    }
 }
