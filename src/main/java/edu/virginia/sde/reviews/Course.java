@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "COURSES")
@@ -93,6 +94,8 @@ public class Course {
         for(Review r : reviews){
             sum += r.getRating();
         }
-        return (double) sum / reviews.size();
+        double avg = (double) sum / reviews.size();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.parseDouble(decimalFormat.format(avg));
     }
 }
