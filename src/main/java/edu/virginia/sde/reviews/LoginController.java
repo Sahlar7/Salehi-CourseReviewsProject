@@ -61,7 +61,6 @@ public class LoginController {
             return;
         }
         session.close();
-        HibernateUtil.shutdown();
         CourseReviewsApplication.setThisUser(thisUser);
         CourseReviewsApplication.switchScene("course-search.fxml", thisUser.getUsername());
 
