@@ -60,7 +60,7 @@ public class LoginController {
         session.close();
         HibernateUtil.shutdown();
         CourseReviewsApplication.setThisUser(thisUser);
-        CourseReviewsApplication.switchScene("hello-world.fxml", thisUser.getUsername());
+        CourseReviewsApplication.switchScene("course-search.fxml", thisUser.getUsername());
 
 
     }
