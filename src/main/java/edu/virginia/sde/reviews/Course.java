@@ -83,10 +83,10 @@ public class Course {
 
     public void addReview(Review review){
         this.reviews.add(review);
-        avgRating = getAverageRating();
+        avgRating = calculateAvgRating();
     }
 
-    public Double getAverageRating(){
+    private Double calculateAvgRating(){
         if(reviews == null){
             return null;
         }
@@ -97,5 +97,9 @@ public class Course {
         double avg = (double) sum / reviews.size();
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return Double.parseDouble(decimalFormat.format(avg));
+    }
+
+    public double getAvgRating(){
+        return avgRating;
     }
 }
