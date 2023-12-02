@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import org.hibernate.*;
 
 import java.io.IOException;
@@ -34,7 +35,33 @@ public class CourseSearchController {
     public void initialize(){
         showAllCourses();
         updateTable();
+        tableView.setOnMouseClicked(this::handleCourseSelect);
+        tableView.setOnMouseEntered(this::handleHoverEnter);
+        tableView.setOnMouseExited(this::handleHoverExit);
     }
+
+    private void handleHoverExit(MouseEvent mouseEvent) {
+        if (mouseEvent.getTarget() instanceof TableRow) {
+            TableRow<Course> row = (TableRow<Course>)mouseEvent.getTarget();
+            row.setStyle("-fx-background-color: transparent;");
+        }
+    }
+
+    private void handleHoverEnter(MouseEvent mouseEvent) {
+        if (mouseEvent.getTarget() instanceof TableRow) {
+            TableRow<Course> row = (TableRow<Course>)mouseEvent.getTarget();
+            row.setStyle("-fx-background-color: lightgray;");
+        }
+    }
+
+    private void handleCourseSelect(MouseEvent mouseEvent) {
+        if(mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()){
+            Course selected = tableView.getSelectionModel().getSelectedItem();
+            // TODO:
+            // CourseReviewsApplication.switchScene("________", "_________");
+        }
+    }
+
     private void updateTable(){
         ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
         tableView.getItems().clear();
@@ -75,11 +102,6 @@ public class CourseSearchController {
         // CourseReviewsApplication.switchScene("add-course", "Add Course");
     }
 
-    public void selectCourse(){
-        // TODO:
-        // CourseReviewsApplication.switchScene(/*COURSE VIEW FILE*/, "Course");
-    }
-
     public void logOut() throws IOException {
         CourseReviewsApplication.setThisUser(null);
         CourseReviewsApplication.switchScene("login.fxml", "Log In");
@@ -89,4 +111,5 @@ public class CourseSearchController {
         // TODO:
         // CourseReviewsApplication.switchScene(/*MY REVIEWS FILE*/, "My Reviews");
     }
+
 }
