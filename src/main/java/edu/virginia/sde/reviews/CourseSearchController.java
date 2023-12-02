@@ -36,20 +36,21 @@ public class CourseSearchController {
         updateTable();
     }
     private void updateTable(){
+        ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
         tableView.getItems().clear();
-        tableView.getItems().addAll(catalog.getCourses());
+        tableView.getItems().addAll(obsList);
     }
 
     public void handleSearchButton(){
         catalog.setCourses(tableView.getItems());
-        if(mnemonic.hasProperties() || courseNumber.hasProperties() || title.hasProperties()){
-            if(mnemonic.hasProperties()){
+        if(this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()){
+            if(this.mnemonic.hasProperties()){
                 catalog.setCourses(catalog.getCoursesByMnemonic(mnemonic.getText()));
             }
-            if(courseNumber.hasProperties()){
+            if(this.courseNumber.hasProperties()){
                 catalog.setCourses(catalog.getCoursesByNumber(Integer.parseInt(courseNumber.getText())));
             }
-            if(title.hasProperties()){
+            if(this.title.hasProperties()){
                 catalog.setCourses(catalog.getCoursesByTitle(title.getText()));
             }
         }

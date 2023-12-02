@@ -26,6 +26,8 @@ public class Course {
     @OneToMany(mappedBy = "id")
     private List<Review> reviews;
 
+    private double avgRating;
+
 
     public Course(int courseID, String mnemonic, int courseNumber, String title) {
         this.courseID = courseID;
@@ -80,5 +82,17 @@ public class Course {
 
     public void addReview(Review review){
         this.reviews.add(review);
+        avgRating = getAverageRating();
+    }
+
+    public Double getAverageRating(){
+        if(reviews == null){
+            return null;
+        }
+        int sum = 0;
+        for(Review r : reviews){
+            sum += r.getRating();
+        }
+        return (double) sum / reviews.size();
     }
 }

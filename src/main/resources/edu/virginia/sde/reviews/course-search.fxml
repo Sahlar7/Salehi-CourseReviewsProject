@@ -16,16 +16,16 @@
         <columns>
             <TableColumn prefWidth="85.0" text="Subject" >
                 <cellValueFactory><PropertyValueFactory property="mnemonic" />
-                </cellValueFactory>></TableColumn>
+                </cellValueFactory></TableColumn>
           <TableColumn prefWidth="75.0" text="Number" >
-              <cellValueFactory><PropertyValueFactory property="number" />
-              </cellValueFactory>></TableColumn>
+              <cellValueFactory><PropertyValueFactory property="courseNumber" />
+              </cellValueFactory></TableColumn>
             <TableColumn prefWidth="365.0" text="Title" >
                 <cellValueFactory><PropertyValueFactory property="title" />
-                </cellValueFactory>></TableColumn>
+                </cellValueFactory></TableColumn>
             <TableColumn prefWidth="75.0" text="Rating" >
-                <cellValueFactory><PropertyValueFactory property="rating" />
-                </cellValueFactory>></TableColumn>
+                <cellValueFactory><PropertyValueFactory property="avgRating" />
+                </cellValueFactory></TableColumn>
         </columns>
       </TableView>
       <Button layoutX="10.0" layoutY="366.0" mnemonicParsing="false" text="Add Course" />
