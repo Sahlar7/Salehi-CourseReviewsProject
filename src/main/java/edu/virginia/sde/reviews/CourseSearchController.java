@@ -97,9 +97,8 @@ public class CourseSearchController {
         updateTable();
     }
 
-    public void addCourse(){
-        // TODO:
-        // CourseReviewsApplication.switchScene("add-course", "Add Course");
+    public void addCourse() throws IOException {
+        CourseReviewsApplication.switchScene("add-course.fxml", "Add Course");
     }
 
     public void logOut() throws IOException {

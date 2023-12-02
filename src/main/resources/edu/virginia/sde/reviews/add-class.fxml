@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.virginia.sde.reviews.AddClassController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.AddClassController">
+   <children>
+      <TextField layoutX="74.0" layoutY="87.0" prefHeight="26.0" prefWidth="82.0" promptText="Subject" />
+      <TextField layoutX="171.0" layoutY="87.0" prefHeight="26.0" prefWidth="82.0" promptText="Number" />
+      <TextField layoutX="274.0" layoutY="87.0" prefHeight="26.0" prefWidth="254.0" promptText="Title" />
+      <Text layoutX="164.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD COURSE" textAlignment="CENTER" wrappingWidth="271.654296875">
+         <font>
+            <Font name="Arial Bold Italic" size="35.0" />
+         </font>
+      </Text>
+      <Button layoutX="237.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="39.0" prefWidth="125.0" text="Add" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <DialogPane layoutX="20.0" layoutY="120.0" prefHeight="57.0" prefWidth="203.0" visible="false"/>
+   </children>
 </AnchorPane>
