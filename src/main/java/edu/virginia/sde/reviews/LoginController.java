@@ -34,6 +34,9 @@ public class LoginController {
     @FXML
     private Button okButton;
 
+    @FXML
+    private Label loading;
+
 
     public void createAccount() throws IOException {
         CourseReviewsApplication.switchScene("create-account.fxml", "Create Account");
@@ -83,6 +86,7 @@ public class LoginController {
         password.setDisable(true);
         login.setDisable(true);
         createAccount.setDisable(true);
+        togglePassword.setDisable(true);
 
         errorPopup.setContentText(errorMessage);
         errorPopup.setVisible(true);
@@ -96,6 +100,7 @@ public class LoginController {
         password.setText("");
         login.setDisable(false);
         createAccount.setDisable(false);
+        togglePassword.setDisable(false);
 
         errorPopup.setVisible(false);
         okButton.setVisible(false);
