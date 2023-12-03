@@ -1,5 +1,4 @@
 package edu.virginia.sde.reviews;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,6 +41,7 @@ public class ReviewListController {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         reviews.addAll(session.createQuery(hql).list());
+        session.getTransaction().commit();
         session.close();
         HibernateUtil.shutdown();
     }
@@ -49,11 +49,11 @@ public class ReviewListController {
         ObservableList<Review> obsList = FXCollections.observableList(new ArrayList<>(reviews));
         if (!reviewTable.getItems().isEmpty())
             reviewTable.getItems().clear();
-        for(int i = 0; i<obsList.size(); i++){
-            if(obsList.get(i).getUser().equals(CourseReviewsApplication.getThisUser()))
-                myReviewTable.getItems().add(obsList.get(i));
+        for (Review review : obsList) {
+            if (review.getUser().equals(CourseReviewsApplication.getThisUser()))
+                myReviewTable.getItems().add(review);
             else
-                reviewTable.getItems().add(obsList.get(i));
+                reviewTable.getItems().add(review);
         }
         if (myReviewTable.getItems().isEmpty()) {
             editReview.setVisible(false);
@@ -82,7 +82,13 @@ public class ReviewListController {
         CourseReviewsApplication.switchScene("review-editor.fxml", "edit review");
     }
     public void deleteReview(){
-
+        Review myReview = myReviewTable.getItems().get(0);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.remove(myReview);
+        session.getTransaction().commit();
+        session.close();
+        HibernateUtil.shutdown();
     }
     public static void setReviewedCourse(Course course){
         reviewedCourse = course;

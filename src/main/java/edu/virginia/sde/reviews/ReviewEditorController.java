@@ -1,9 +1,7 @@
 package edu.virginia.sde.reviews;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -45,7 +43,7 @@ public class ReviewEditorController {
             else {
                 review.setRating(Integer.parseInt((rating.getSelectedToggle().getUserData().toString())));
                 review.setComment(comment.getText());
-                session.save(review);
+                session.update(review);
                 session.getTransaction().commit();
             }
             session.close();

@@ -29,8 +29,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="13.0" layoutY="146.0" prefHeight="99.0" prefWidth="515.0" promptText="Write review comment here..." />
-      <Button layoutX="274.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleReviewSubmit" text="Submit" />
+      <TextArea fx:id="comment" layoutX="13.0" layoutY="146.0" prefHeight="99.0" prefWidth="515.0" promptText="Write review comment here..." />
+      <Button fx:id="submit" layoutX="274.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleReviewSubmit" text="Submit" />
       <Text fx:id="ratingCheck" fill="#ea1111" layoutX="317.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Rating must be selected" visible="false"/>
    </children>
 </AnchorPane>
