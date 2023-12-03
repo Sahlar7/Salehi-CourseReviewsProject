@@ -7,14 +7,14 @@
 
 <AnchorPane prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.ReviewListController">
    <children>
-      <TextField editable="false" layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="315.0">
+      <TextField fx:id="courseName" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="315.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField editable="false" layoutX="14.0" layoutY="69.0" prefHeight="38.0" prefWidth="315.0" text="Average Rating: " />
-      <Button layoutX="456.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToCourseSearch" text="Back to Course Search" />
-      <TableView layoutX="14.0" layoutY="117.0" prefHeight="134.0" prefWidth="460.0">
+      <TextField fx:id="avgRating" editable="false" layoutX="14.0" layoutY="69.0" prefHeight="38.0" prefWidth="315.0" text="Average Rating: " />
+      <Button fx:id="backToSearch" layoutX="456.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToCourseSearch" text="Back to Course Search" />
+      <TableView fx:id="reviewTable" layoutX="14.0" layoutY="117.0" prefHeight="134.0" prefWidth="460.0">
         <columns>
           <TableColumn prefWidth="98.2000150680542" text="Course Rating">
                   <cellValueFactory><PropertyValueFactory property="rating" /></cellValueFactory>
@@ -27,7 +27,7 @@
             </TableColumn>
         </columns>
       </TableView>
-       <TableView layoutX="14.0" layoutY="334.0" prefHeight="88.0" prefWidth="460.0">
+       <TableView fx:id="myReviewTable" layoutX="14.0" layoutY="334.0" prefHeight="88.0" prefWidth="460.0">
            <columns>
                <TableColumn prefWidth="98.2000150680542" text="Course Rating">
                    <cellValueFactory><PropertyValueFactory property="rating" /></cellValueFactory>

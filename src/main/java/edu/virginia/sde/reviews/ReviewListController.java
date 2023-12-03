@@ -29,9 +29,11 @@ public class ReviewListController {
     @FXML
     private Button deleteReview;
     private ArrayList<Review> reviews = new ArrayList<Review>();
-    private static Course reviewedCourse = null;
+    private static Course reviewedCourse;
 
     public void initialize(){
+        courseName.setText(reviewedCourse.getMnemonic() + " " + reviewedCourse.getCourseID() + ": " + reviewedCourse.getTitle());
+        avgRating.setText(reviewedCourse.getAvgRating()+"");
         getReviews();
         updateTable();
     }
