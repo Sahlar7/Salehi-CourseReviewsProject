@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="294.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.ReviewEditorController">
+   <children>
+      <Text layoutX="209.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Review">
+         <font>
+            <Font size="36.0" />
+         </font></Text>
+      <RadioButton layoutX="77.0" layoutY="97.0" mnemonicParsing="false" text="1">
+         <toggleGroup>
+            <ToggleGroup fx:id="rating" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="113.0" layoutY="97.0" mnemonicParsing="false" text="2" toggleGroup="$rating" />
+      <RadioButton layoutX="150.0" layoutY="97.0" mnemonicParsing="false" text="3" toggleGroup="$rating" />
+      <RadioButton layoutX="187.0" layoutY="97.0" mnemonicParsing="false" text="4" toggleGroup="$rating" />
+      <RadioButton layoutX="226.0" layoutY="97.0" mnemonicParsing="false" text="5" toggleGroup="$rating" />
+      <Label layoutX="14.0" layoutY="88.0" prefHeight="36.0" prefWidth="63.0" text="Rating:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="126.0" text="Comment (optional)">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="13.0" layoutY="146.0" prefHeight="99.0" prefWidth="515.0" promptText="Write review comment here..." />
+      <Button layoutX="274.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleReviewSubmit" text="Submit" />
+      <Text fx:id="ratingCheck" fill="#ea1111" layoutX="317.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Rating must be selected" visible="false"/>
+   </children>
+</AnchorPane>

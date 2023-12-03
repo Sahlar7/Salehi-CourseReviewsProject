@@ -38,6 +38,7 @@ public class CourseSearchController {
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
+
     }
 
     private void handleHoverExit(MouseEvent mouseEvent) {
@@ -57,8 +58,9 @@ public class CourseSearchController {
     private void handleCourseSelect(MouseEvent mouseEvent) {
         if(mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()){
             Course selected = tableView.getSelectionModel().getSelectedItem();
+            ReviewListController.setReviewedCourse(selected);
             // TODO:
-            // CourseReviewsApplication.switchScene("________", "_________");
+            //CourseReviewsApplication.switchScene("review-list", "review list");
         }
     }
 
