@@ -32,9 +32,10 @@ public class CourseSearchController {
 
     private Catalog catalog = new Catalog();
 
+    private Course selected;
+
     public void initialize(){
         showAllCourses();
-        updateTable();
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
@@ -54,17 +55,23 @@ public class CourseSearchController {
         }
     }
 
-    private void handleCourseSelect(MouseEvent mouseEvent) {
-        if(mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()){
-            Course selected = tableView.getSelectionModel().getSelectedItem();
-            // TODO:
-            // CourseReviewsApplication.switchScene("________", "_________");
+    private void handleCourseSelect(MouseEvent mouseEvent){
+        try {
+            if (mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()) {
+                selected = tableView.getSelectionModel().getSelectedItem();
+                CourseReviewsApplication.switchScene("ReviewList.fxml", selected.getMnemonic() + " " + selected.getCourseNumber());
+            }
+        } catch(IOException e){
+            throw new RuntimeException();
         }
+    }
+    public Course getSelectedCourse(){
+        return selected;
     }
 
     private void updateTable(){
-        ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
         if(tableView.getItems() != null){
+            ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
             tableView.getItems().clear();
             tableView.getItems().addAll(obsList);
         }
