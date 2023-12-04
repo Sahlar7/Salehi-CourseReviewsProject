@@ -41,6 +41,9 @@ public class CourseSearchController {
 
     public void initialize() {
         showAllCourses();
+        mnemonic.clear();
+        courseNumber.clear();
+        title.clear();
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
