@@ -76,7 +76,7 @@ public class ReviewListController {
     }
     public void addReview() throws IOException {
         ReviewEditorController.setNewReview(true);
-        ReviewEditorController.setReview(new Review());
+        ReviewEditorController.setReview(new Review(true));
         CourseReviewsApplication.switchScene("review-editor.fxml", "add review");
     }
 

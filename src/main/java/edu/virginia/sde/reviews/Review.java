@@ -30,9 +30,18 @@ public class Review {
     @JoinColumn(name = "COURSE", referencedColumnName = "ID")
     private Course course;
 
+    @Transient
+    private String courseMnemonic;
+    @Transient
+    private int courseNumber;
+
 
     public Review() {
+
+    }
+    public Review(boolean notDefault){
         this.timestamp =  new Timestamp(System.currentTimeMillis());
+
     }
 
     public int getId() {
@@ -81,5 +90,18 @@ public class Review {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public void setCourseNumber(int courseNumber){
+        this.courseNumber=courseNumber;
+    }
+    public int getCourseNumber(){
+        return this.courseNumber;
+    }
+    public void setCourseMnemonic(String courseMnemonic){
+        this.courseMnemonic=courseMnemonic;
+    }
+    public String getCourseMnemonic(){
+        return this.courseMnemonic;
     }
 }
