@@ -52,8 +52,11 @@ public class AddClassController {
             java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Query<Course> query = session.createQuery("FROM Course WHERE mnemonic = '" + subject + "' " +
-                    "AND courseNumber = '" + courseNum + "' AND title = '" + courseTitle + "'");
+            Query<Course> query = session.createQuery("FROM Course WHERE mnemonic = :subject " +
+                    "AND courseNumber = :courseNum AND title = :courseTitle");
+            query.setParameter("subject", subject);
+            query.setParameter("courseNum", courseNum);
+            query.setParameter("courseTitle", courseTitle);
             if(query.getSingleResultOrNull() != null){
                 handleError("Course already exists.");
                 session.close();
