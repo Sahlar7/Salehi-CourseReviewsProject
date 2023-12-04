@@ -88,7 +88,7 @@ public class CourseSearchController {
             for (Course c : obsList) {
                 Query<Review> query = session.createQuery("FROM Review WHERE course = :course");
                 query.setParameter("course", c);
-                c.setAvgRating(calculateAvgRating(query.list()));
+                c.calculateAvgRating(query.list());
             }
             session.close();
             tableView.getItems().clear();
@@ -96,7 +96,7 @@ public class CourseSearchController {
         }
     }
 
-    private String calculateAvgRating(List<Review> reviews) {
+    /*private String calculateAvgRating(List<Review> reviews) {
         if (reviews.isEmpty()) {
             return "";
         }
@@ -106,7 +106,7 @@ public class CourseSearchController {
         }
         double avg = (double) sum / reviews.size();
         return String.format("%.2f", avg);
-    }
+    }*/
 
     public void handleSearchButton() {
         if (tableView.getItems() != null) {

@@ -93,4 +93,16 @@ public class Course {
     public String getAvgRating() {
         return avgRating;
     }
+    public void calculateAvgRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            avgRating= "";
+            return;
+        }
+        int sum = 0;
+        for (Review r : reviews) {
+            sum += r.getRating();
+        }
+        double avg = (double) sum / reviews.size();
+        avgRating= String.format("%.2f", avg);
+    }
 }

@@ -2,6 +2,7 @@ package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -21,24 +22,70 @@ public class ReviewEditorController {
     private Button submit;
     @FXML
     private Text commentCheck;
+    @FXML
+    private RadioButton rating1;
+    @FXML
+    private RadioButton rating2;
+    @FXML
+    private RadioButton rating3;
+    @FXML
+    private RadioButton rating4;
+    @FXML
+    private RadioButton rating5;
+
 
     private static Review review;
     private static boolean newReview;
 
 
+    public void initialize(){
+        if(!newReview){
+            switch(review.getRating()){
+                case 1:
+                    rating1.setSelected(true);
+                    break;
+                case 2:
+                    rating2.setSelected(true);
+                    break;
+                case 3:
+                    rating3.setSelected(true);
+                    break;
+                case 4:
+                    rating4.setSelected(true);
+                    break;
+                case 5:
+                    rating5.setSelected(true);
+                    break;
+                default:
+                    break;
+
+            }
+            comment.setText(review.getComment());
+        }
+    }
     public void handleReviewSubmit() throws IOException {
         if(rating.getSelectedToggle()==null) {
             ratingCheck.setVisible(true);
+            return;
         }
         if(comment.getText().length() > 250) {
             commentCheck.setVisible(true);
+            return;
         }
-        else {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
             if (newReview) {
-                review.setRating(Integer.parseInt((rating.getSelectedToggle().getUserData().toString())));
+                if(rating.getSelectedToggle().equals(rating1))
+                    review.setRating(1);
+                else if(rating.getSelectedToggle().equals(rating2))
+                    review.setRating(2);
+                else if(rating.getSelectedToggle().equals(rating3))
+                    review.setRating(3);
+                else if(rating.getSelectedToggle().equals(rating4))
+                    review.setRating(4);
+                else if(rating.getSelectedToggle().equals(rating5))
+                    review.setRating(5);
                 review.setComment(comment.getText());
                 review.setUser(CourseReviewsApplication.getThisUser());
                 review.setCourse(ReviewListController.getReviewedCourse());
@@ -46,18 +93,25 @@ public class ReviewEditorController {
                 session.getTransaction().commit();
             }
             else {
-                review.setRating(Integer.parseInt((rating.getSelectedToggle().getUserData().toString())));
+                if(rating.getSelectedToggle().equals(rating1))
+                    review.setRating(1);
+                else if(rating.getSelectedToggle().equals(rating2))
+                    review.setRating(2);
+                else if(rating.getSelectedToggle().equals(rating3))
+                    review.setRating(3);
+                else if(rating.getSelectedToggle().equals(rating4))
+                    review.setRating(4);
+                else if(rating.getSelectedToggle().equals(rating5))
+                    review.setRating(5);
                 review.setComment(comment.getText());
                 session.update(review);
                 session.getTransaction().commit();
             }
             session.close();
-            HibernateUtil.shutdown();
             ratingCheck.setVisible(false);
             commentCheck.setVisible(false);
             CourseReviewsApplication.switchScene("review-list.fxml", review.getCourse().getMnemonic() + " " + review.getCourse().getCourseNumber());
         }
-    }
 
     public static void setNewReview(boolean n) {
         newReview = n;
