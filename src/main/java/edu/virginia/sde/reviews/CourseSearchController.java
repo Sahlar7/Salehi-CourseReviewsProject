@@ -70,7 +70,7 @@ public class CourseSearchController {
     }
 
     private void updateTable(){
-        if(tableView.getItems() != null){
+        if(tableView != null){
             ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
             tableView.getItems().clear();
             tableView.getItems().addAll(obsList);
