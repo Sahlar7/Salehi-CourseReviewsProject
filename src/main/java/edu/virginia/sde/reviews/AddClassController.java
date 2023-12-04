@@ -56,19 +56,16 @@ public class AddClassController {
                 if(c.getMnemonic().equalsIgnoreCase(subject) && c.getCourseNumber() == courseNum){
                     handleError(subject.toUpperCase() + " " + courseNum + " already exists.");
                     session.close();
-                    HibernateUtil.shutdown();
                     return;
                 }
             }
             Course added = new Course(courseID, subject, courseNum, courseTitle);
             session.save(added);
             session.getTransaction().commit();session.close();
-            HibernateUtil.shutdown();
             CourseReviewsApplication.switchScene("course-search.fxml", "Course Search");
             return;
         }
         session.close();
-        HibernateUtil.shutdown();
     }
 
     public void handleCancel() throws IOException {

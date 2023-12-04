@@ -107,12 +107,11 @@ public class CourseSearchController {
         catalog.setCourses(session.createQuery("FROM Course", Course.class).list());
         session.getTransaction().commit();
         session.close();
-        HibernateUtil.shutdown();
         updateTable();
     }
 
     public void addCourse() throws IOException {
-        CourseReviewsApplication.switchScene("add-course.fxml", "Add Course");
+        CourseReviewsApplication.switchScene("add-class.fxml", "Add Course");
     }
 
     public void logOut() throws IOException {
