@@ -64,12 +64,19 @@ public class CourseSearchController {
 
     private void updateTable(){
         ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
-        tableView.getItems().clear();
-        tableView.getItems().addAll(obsList);
+        if(tableView.getItems() != null){
+            tableView.getItems().clear();
+            tableView.getItems().addAll(obsList);
+        }
     }
 
     public void handleSearchButton(){
-        catalog.setCourses(tableView.getItems());
+        if(tableView.getItems() != null){
+            catalog.setCourses(tableView.getItems());
+        }
+        else{
+            return;
+        }
         if(this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()){
             if(this.mnemonic.hasProperties()){
                 catalog.setCourses(catalog.getCoursesByMnemonic(mnemonic.getText()));
@@ -106,9 +113,8 @@ public class CourseSearchController {
         CourseReviewsApplication.switchScene("login.fxml", "Log In");
     }
 
-    public void myReviews(){
-        // TODO:
-        // CourseReviewsApplication.switchScene(/*MY REVIEWS FILE*/, "My Reviews");
+    public void myReviews() throws IOException {
+        CourseReviewsApplication.switchScene("MyReviews.fxml", "My Reviews");
     }
 
 }
