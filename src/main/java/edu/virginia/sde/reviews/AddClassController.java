@@ -35,9 +35,9 @@ public class AddClassController {
         Integer courseNum = null;
         String courseTitle = null;
         try {
-            subject = mnemonic.getText();
-            courseNum = Integer.parseInt(courseNumber.getText());
-            courseTitle = title.getText();
+            subject = mnemonic.getText().trim();
+            courseNum = Integer.parseInt(courseNumber.getText().trim());
+            courseTitle = title.getText().trim();
         } catch (Exception e) {
             handleError("Invalid inputs. Use only letters for the Subject and numbers for the Course Number.");
             return;
