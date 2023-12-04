@@ -29,9 +29,9 @@ public class AddClassController {
     public void handleAdd() throws IOException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        int courseID = Integer.parseInt(null);
+        Integer courseID = null;
         String subject = null;
-        int courseNum = Integer.parseInt(null);
+        Integer courseNum = null;
         String courseTitle = null;
         try {
             courseID = (int) Math.random() * 10000;
