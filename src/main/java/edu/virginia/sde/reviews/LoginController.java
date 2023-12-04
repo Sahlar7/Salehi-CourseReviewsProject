@@ -1,11 +1,9 @@
 package edu.virginia.sde.reviews;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import org.hibernate.Session;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -103,6 +101,10 @@ public class LoginController {
 
         errorPopup.setVisible(false);
         okButton.setVisible(false);
+    }
+
+    public void closeApplication() {
+        CourseReviewsApplication.closeApplication();
     }
 
 }

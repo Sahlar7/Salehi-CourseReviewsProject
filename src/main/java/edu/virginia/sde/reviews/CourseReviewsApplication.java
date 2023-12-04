@@ -1,6 +1,7 @@
 package edu.virginia.sde.reviews;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -41,5 +42,9 @@ public class CourseReviewsApplication extends Application {
 
     public static User getThisUser() {
         return thisUser;
+    }
+
+    public static void closeApplication() {
+        Platform.exit();
     }
 }

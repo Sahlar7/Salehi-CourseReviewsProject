@@ -41,6 +41,9 @@ public class CourseSearchController {
 
     public void initialize() {
         showAllCourses();
+        mnemonic.clear();
+        courseNumber.clear();
+        title.clear();
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
@@ -102,7 +105,6 @@ public class CourseSearchController {
             sum += r.getRating();
         }
         double avg = (double) sum / reviews.size();
-        //DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return String.format("%.2f", avg);
     }
 
