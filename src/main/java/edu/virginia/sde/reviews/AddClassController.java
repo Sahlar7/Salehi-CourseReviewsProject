@@ -60,7 +60,7 @@ public class AddClassController {
                 }
             }
             Course added = new Course(courseID, subject, courseNum, courseTitle);
-            session.save(added);
+            session.persist(added);
             session.getTransaction().commit();session.close();
             CourseReviewsApplication.switchScene("course-search.fxml", "Course Search");
             return;
