@@ -4,9 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import org.hibernate.*;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 
 public class ReviewListController {
@@ -27,30 +29,31 @@ public class ReviewListController {
     private Button editReview;
     @FXML
     private Button deleteReview;
-    private ArrayList<Review> reviews = new ArrayList<Review>();
+    private ArrayList<Review> reviews = new ArrayList<>();
     private static Course reviewedCourse;
 
     public void initialize(){
-        courseName.setText(reviewedCourse.getMnemonic() + " " + reviewedCourse.getCourseID() + ": " + reviewedCourse.getTitle());
+        courseName.setText(reviewedCourse.getMnemonic() + " " + reviewedCourse.getCourseNumber() + ": " + reviewedCourse.getTitle());
         avgRating.setText(reviewedCourse.getAvgRating()+"");
         getReviews();
-        updateTable();
     }
     private void getReviews(){
-        String hql = "SELECT r from Review R WHERE R.course = :reviewedCourse";
+        String hql = "from Review where course = :reviewedCourse";
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        reviews.addAll(session.createQuery(hql).list());
+        Query query = (session.createQuery(hql, Review.class));
+        query.setParameter("reviewedCourse", reviewedCourse);
+        reviews.addAll(query.getResultList());
         session.getTransaction().commit();
         session.close();
-        HibernateUtil.shutdown();
+        updateTable();
     }
     private void updateTable(){
-        ObservableList<Review> obsList = FXCollections.observableList(new ArrayList<>(reviews));
-        if (!reviewTable.getItems().isEmpty())
-            reviewTable.getItems().clear();
+        ObservableList<Review> obsList = FXCollections.observableList(reviews);
+        reviewTable.getItems().clear();
+        myReviewTable.getItems().clear();
         for (Review review : obsList) {
-            if (review.getUser().equals(CourseReviewsApplication.getThisUser()))
+            if (review.getUser().getUsername().equals(CourseReviewsApplication.getThisUser().getUsername()))
                 myReviewTable.getItems().add(review);
             else
                 reviewTable.getItems().add(review);
@@ -88,7 +91,8 @@ public class ReviewListController {
         session.remove(myReview);
         session.getTransaction().commit();
         session.close();
-        HibernateUtil.shutdown();
+        reviews.clear();
+        getReviews();
     }
     public static void setReviewedCourse(Course course){
         reviewedCourse = course;
