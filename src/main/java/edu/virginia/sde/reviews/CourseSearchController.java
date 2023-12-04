@@ -105,7 +105,6 @@ public class CourseSearchController {
             sum += r.getRating();
         }
         double avg = (double) sum / reviews.size();
-        //DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return String.format("%.2f", avg);
     }
 
