@@ -16,6 +16,7 @@
       </Text>
       <Button layoutX="237.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="39.0" prefWidth="125.0" text="Add" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <DialogPane fx:id="errorPopup" layoutX="20.0" layoutY="120.0" prefHeight="57.0" prefWidth="203.0" visible="false"/>
+      <DialogPane fx:id="errorPopup" layoutX="130.0" layoutY="62.0" prefHeight="76.0" prefWidth="339.0" style="-fx-background-color: lightgray;" visible="false" />
+      <Button fx:id="okButton" layoutX="411.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleErrorClose" text="Close" visible="false" />
    </children>
 </AnchorPane>
