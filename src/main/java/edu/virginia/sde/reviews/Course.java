@@ -2,9 +2,9 @@ package edu.virginia.sde.reviews;
 
 import jakarta.persistence.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "COURSES")
@@ -27,7 +27,8 @@ public class Course {
     @OneToMany(mappedBy = "id")
     private List<Review> reviews;
 
-    private double avgRating;
+    @Transient
+    private Double avgRating;
 
 
     public Course(String mnemonic, int courseNumber, String title) {
@@ -80,17 +81,17 @@ public class Course {
         this.reviews = reviews;
     }
 
-    public void addReview(Review review){
+    public void addReview(Review review) {
         this.reviews.add(review);
         avgRating = calculateAvgRating();
     }
 
-    private Double calculateAvgRating(){
-        if(reviews == null){
+    private Double calculateAvgRating() {
+        if (reviews == null) {
             return null;
         }
         int sum = 0;
-        for(Review r : reviews){
+        for (Review r : reviews) {
             sum += r.getRating();
         }
         double avg = (double) sum / reviews.size();
@@ -98,7 +99,7 @@ public class Course {
         return Double.parseDouble(decimalFormat.format(avg));
     }
 
-    public double getAvgRating(){
+    public double getAvgRating() {
         return avgRating;
     }
 }
