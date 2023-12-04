@@ -32,9 +32,10 @@ public class CourseSearchController {
 
     private Catalog catalog = new Catalog();
 
+    private Course selected;
+
     public void initialize(){
         showAllCourses();
-        updateTable();
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
@@ -55,23 +56,36 @@ public class CourseSearchController {
         }
     }
 
-    private void handleCourseSelect(MouseEvent mouseEvent) {
-        if(mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()){
-            Course selected = tableView.getSelectionModel().getSelectedItem();
-            ReviewListController.setReviewedCourse(selected);
-            // TODO:
-            //CourseReviewsApplication.switchScene("review-list", "review list");
+    private void handleCourseSelect(MouseEvent mouseEvent){
+        try {
+            if (mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()) {
+                selected = tableView.getSelectionModel().getSelectedItem();
+                ReviewListController.setReviewedCourse(selected);
+                CourseReviewsApplication.switchScene("review-list.fxml", selected.getMnemonic() + " " + selected.getCourseNumber());
+            }
+        } catch(IOException e){
+            throw new RuntimeException();
         }
+    }
+    public Course getSelectedCourse(){
+        return selected;
     }
 
     private void updateTable(){
-        ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
-        tableView.getItems().clear();
-        tableView.getItems().addAll(obsList);
+        if(tableView != null){
+            ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
+            tableView.getItems().clear();
+            tableView.getItems().addAll(obsList);
+        }
     }
 
     public void handleSearchButton(){
-        catalog.setCourses(tableView.getItems());
+        if(tableView.getItems() != null){
+            catalog.setCourses(tableView.getItems());
+        }
+        else{
+            return;
+        }
         if(this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()){
             if(this.mnemonic.hasProperties()){
                 catalog.setCourses(catalog.getCoursesByMnemonic(mnemonic.getText()));
@@ -95,12 +109,11 @@ public class CourseSearchController {
         catalog.setCourses(session.createQuery("FROM Course", Course.class).list());
         session.getTransaction().commit();
         session.close();
-        HibernateUtil.shutdown();
         updateTable();
     }
 
     public void addCourse() throws IOException {
-        CourseReviewsApplication.switchScene("add-course.fxml", "Add Course");
+        CourseReviewsApplication.switchScene("add-class.fxml", "Add Course");
     }
 
     public void logOut() throws IOException {
@@ -108,9 +121,8 @@ public class CourseSearchController {
         CourseReviewsApplication.switchScene("login.fxml", "Log In");
     }
 
-    public void myReviews(){
-        // TODO:
-        // CourseReviewsApplication.switchScene(/*MY REVIEWS FILE*/, "My Reviews");
+    public void myReviews() throws IOException {
+        CourseReviewsApplication.switchScene("MyReviews.fxml", "My Reviews");
     }
 
 }
