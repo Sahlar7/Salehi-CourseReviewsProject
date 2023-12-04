@@ -9,6 +9,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.text.DecimalFormat;
+import java.util.*;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -78,9 +82,30 @@ public class CourseSearchController {
     private void updateTable() {
         if (tableView != null) {
             ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for(Course c : obsList){
+                Query<Review> query = session.createQuery("FROM Review WHERE course = :course");
+                query.setParameter("course", c);
+                c.setAvgRating(calculateAvgRating(query.list()));
+            }
+            session.close();
             tableView.getItems().clear();
             tableView.getItems().addAll(obsList);
         }
+    }
+
+    private String calculateAvgRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            return "";
+        }
+        int sum = 0;
+        for (Review r : reviews) {
+            sum += r.getRating();
+        }
+        double avg = (double) sum / reviews.size();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return decimalFormat.format(avg);
     }
 
     public void handleSearchButton() {

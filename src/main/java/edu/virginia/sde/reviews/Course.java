@@ -84,20 +84,10 @@ public class Course {
 
     public void addReview(Review review) {
         this.reviews.add(review);
-        avgRating = calculateAvgRating();
     }
 
-    private String calculateAvgRating() {
-        if (reviews == null) {
-            return "";
-        }
-        int sum = 0;
-        for (Review r : reviews) {
-            sum += r.getRating();
-        }
-        double avg = (double) sum / reviews.size();
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return decimalFormat.format(avg);
+    public void setAvgRating(String rating){
+        avgRating = rating;
     }
 
     public String getAvgRating() {
