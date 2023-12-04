@@ -89,14 +89,14 @@ public class CourseSearchController {
         } else {
             return;
         }
-        if (this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()) {
-            if (this.mnemonic.hasProperties()) {
+        if (!this.mnemonic.getText().isEmpty() || !this.courseNumber.getText().isEmpty() || !this.title.getText().isEmpty()) {
+            if (!this.mnemonic.getText().isEmpty()) {
                 catalog.setCourses(catalog.getCoursesByMnemonic(mnemonic.getText()));
             }
-            if (this.courseNumber.hasProperties()) {
+            if (!this.courseNumber.getText().isEmpty()) {
                 catalog.setCourses(catalog.getCoursesByNumber(Integer.parseInt(courseNumber.getText())));
             }
-            if (this.title.hasProperties()) {
+            if (!this.title.getText().isEmpty()) {
                 catalog.setCourses(catalog.getCoursesByTitle(title.getText()));
             }
         } else {

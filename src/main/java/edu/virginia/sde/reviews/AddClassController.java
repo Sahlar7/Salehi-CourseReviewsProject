@@ -49,6 +49,11 @@ public class AddClassController {
         } else if (courseTitle.length() < 1 || courseTitle.length() > 50) {
             handleError("Invalid course title length (Must be 1-50 characters)");
         } else {
+            for(int i = 0; i < subject.length(); i++){
+                if(Character.isDigit(subject.charAt(i))){
+                    handleError("Invalid subject mnemonic. Use only letters.");
+                }
+            }
             java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
