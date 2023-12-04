@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.virginia.sde.reviews.MyReviewsController">
+   <children>
+      <TextField editable="false" layoutX="14.0" layoutY="23.0" prefHeight="88.0" prefWidth="242.0" text="My Reviews">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="myReviews" layoutX="14.0" layoutY="130.0" prefHeight="238.0" prefWidth="479.0">
+        <columns>
+          <TableColumn prefWidth="120.20000267028809" text="Subject" >
+              <cellValueFactory><PropertyValueFactory property="mnemonic"/></cellValueFactory>
+          </TableColumn>
+          <TableColumn minWidth="1.20001220703125" prefWidth="121.0" text="Number">
+              <cellValueFactory><PropertyValueFactory property="courseNumber"/></cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="145.80001831054688" text="Rating" >
+                <cellValueFactory><PropertyValueFactory property = "rating"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="86.199951171875" text="Timestamp" />
+        </columns>
+      </TableView>
+      <Button fx:id="backToSearch" layoutX="443.0" layoutY="23.0" mnemonicParsing="false" text="Back to Course Search" />
+   </children>
+</AnchorPane>

@@ -42,14 +42,14 @@
        </TableView>
       <TextField layoutX="14.0" layoutY="267.0" prefHeight="55.0" prefWidth="124.0" text="My Review">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font size="18.0" />
          </font>
       </TextField>
       <ButtonBar layoutX="174.0" layoutY="295.0" prefHeight="40.0" prefWidth="299.0">
         <buttons>
-            <Button fx:id="addReview" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Add Review" onAction = "#addReview"/>
-            <Button fx:id="editReview" mnemonicParsing="false" text="Edit " onAction = "#editReview"/>
-          <Button fx:id="deleteReview" mnemonicParsing="false" text="Delete" textAlignment="CENTER" onAction="#deleteReview"/>
+            <Button fx:id="addReview" mnemonicParsing="false" onAction="#addReview" prefHeight="26.0" prefWidth="102.0" text="Add Review" />
+            <Button fx:id="editReview" mnemonicParsing="false" onAction="#editReview" text="Edit " />
+          <Button fx:id="deleteReview" mnemonicParsing="false" onAction="#deleteReview" text="Delete" textAlignment="CENTER" />
         </buttons>
       </ButtonBar>
    </children>

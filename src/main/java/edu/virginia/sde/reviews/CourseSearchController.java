@@ -122,7 +122,7 @@ public class CourseSearchController {
     }
 
     public void myReviews() throws IOException {
-        CourseReviewsApplication.switchScene("MyReviews.fxml", "My Reviews");
+        CourseReviewsApplication.switchScene("my-reviews.fxml", "My Reviews");
     }
 
 }

@@ -19,6 +19,8 @@ public class ReviewEditorController {
     private Text ratingCheck;
     @FXML
     private Button submit;
+    @FXML
+    private Text commentCheck;
 
     private static Review review;
     private static boolean newReview;
@@ -27,6 +29,9 @@ public class ReviewEditorController {
     public void handleReviewSubmit() throws IOException {
         if(rating.getSelectedToggle()==null) {
             ratingCheck.setVisible(true);
+        }
+        if(comment.getText().length() > 250) {
+            commentCheck.setVisible(true);
         }
         else {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -49,7 +54,8 @@ public class ReviewEditorController {
             session.close();
             HibernateUtil.shutdown();
             ratingCheck.setVisible(false);
-            CourseReviewsApplication.switchScene("review-list.fxml", "review list");
+            commentCheck.setVisible(false);
+            CourseReviewsApplication.switchScene("review-list.fxml", review.getCourse().getMnemonic() + " " + review.getCourse().getCourseNumber());
         }
     }
 
