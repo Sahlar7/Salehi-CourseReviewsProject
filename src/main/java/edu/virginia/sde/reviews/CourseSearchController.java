@@ -39,6 +39,7 @@ public class CourseSearchController {
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
         tableView.setOnMouseExited(this::handleHoverExit);
+
     }
 
     private void handleHoverExit(MouseEvent mouseEvent) {
@@ -59,7 +60,8 @@ public class CourseSearchController {
         try {
             if (mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()) {
                 selected = tableView.getSelectionModel().getSelectedItem();
-                CourseReviewsApplication.switchScene("ReviewList.fxml", selected.getMnemonic() + " " + selected.getCourseNumber());
+                ReviewListController.setReviewedCourse(selected);
+                CourseReviewsApplication.switchScene("review-list.fxml", selected.getMnemonic() + " " + selected.getCourseNumber());
             }
         } catch(IOException e){
             throw new RuntimeException();
@@ -120,7 +122,7 @@ public class CourseSearchController {
     }
 
     public void myReviews() throws IOException {
-        CourseReviewsApplication.switchScene("MyReviews.fxml", "My Reviews");
+        CourseReviewsApplication.switchScene("my-reviews.fxml", "My Reviews");
     }
 
 }
