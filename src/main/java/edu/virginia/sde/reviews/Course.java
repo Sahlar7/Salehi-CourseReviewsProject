@@ -28,13 +28,14 @@ public class Course {
     private List<Review> reviews;
 
     @Transient
-    private Double avgRating;
+    private String avgRating;
 
 
     public Course(String mnemonic, int courseNumber, String title) {
         this.mnemonic = mnemonic;
         this.courseNumber = courseNumber;
         this.title = title;
+        this.avgRating = "";
     }
 
     public Course() {
@@ -86,9 +87,9 @@ public class Course {
         avgRating = calculateAvgRating();
     }
 
-    private Double calculateAvgRating() {
+    private String calculateAvgRating() {
         if (reviews == null) {
-            return null;
+            return "";
         }
         int sum = 0;
         for (Review r : reviews) {
@@ -96,10 +97,10 @@ public class Course {
         }
         double avg = (double) sum / reviews.size();
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Double.parseDouble(decimalFormat.format(avg));
+        return decimalFormat.format(avg);
     }
 
-    public double getAvgRating() {
+    public String getAvgRating() {
         return avgRating;
     }
 }
