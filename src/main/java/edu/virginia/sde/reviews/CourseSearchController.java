@@ -3,12 +3,15 @@ package edu.virginia.sde.reviews;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.hibernate.*;
+import org.hibernate.Session;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.logging.Level;
 
 public class CourseSearchController {
 
@@ -34,7 +37,7 @@ public class CourseSearchController {
 
     private Course selected;
 
-    public void initialize(){
+    public void initialize() {
         showAllCourses();
         tableView.setOnMouseClicked(this::handleCourseSelect);
         tableView.setOnMouseEntered(this::handleHoverEnter);
@@ -44,66 +47,66 @@ public class CourseSearchController {
 
     private void handleHoverExit(MouseEvent mouseEvent) {
         if (mouseEvent.getTarget() instanceof TableRow) {
-            TableRow<Course> row = (TableRow<Course>)mouseEvent.getTarget();
+            TableRow<Course> row = (TableRow<Course>) mouseEvent.getTarget();
             row.setStyle("-fx-background-color: transparent;");
         }
     }
 
     private void handleHoverEnter(MouseEvent mouseEvent) {
         if (mouseEvent.getTarget() instanceof TableRow) {
-            TableRow<Course> row = (TableRow<Course>)mouseEvent.getTarget();
+            TableRow<Course> row = (TableRow<Course>) mouseEvent.getTarget();
             row.setStyle("-fx-background-color: lightgray;");
         }
     }
 
-    private void handleCourseSelect(MouseEvent mouseEvent){
+    private void handleCourseSelect(MouseEvent mouseEvent) {
         try {
             if (mouseEvent.getClickCount() == 2 && !tableView.getSelectionModel().isEmpty()) {
                 selected = tableView.getSelectionModel().getSelectedItem();
                 ReviewListController.setReviewedCourse(selected);
                 CourseReviewsApplication.switchScene("review-list.fxml", selected.getMnemonic() + " " + selected.getCourseNumber());
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             throw new RuntimeException();
         }
     }
-    public Course getSelectedCourse(){
+
+    public Course getSelectedCourse() {
         return selected;
     }
 
-    private void updateTable(){
-        if(tableView != null){
+    private void updateTable() {
+        if (tableView != null) {
             ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
             tableView.getItems().clear();
             tableView.getItems().addAll(obsList);
         }
     }
 
-    public void handleSearchButton(){
-        if(tableView.getItems() != null){
+    public void handleSearchButton() {
+        if (tableView.getItems() != null) {
             catalog.setCourses(tableView.getItems());
-        }
-        else{
+        } else {
             return;
         }
-        if(this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()){
-            if(this.mnemonic.hasProperties()){
+        if (this.mnemonic.hasProperties() || this.courseNumber.hasProperties() || this.title.hasProperties()) {
+            if (this.mnemonic.hasProperties()) {
                 catalog.setCourses(catalog.getCoursesByMnemonic(mnemonic.getText()));
             }
-            if(this.courseNumber.hasProperties()){
+            if (this.courseNumber.hasProperties()) {
                 catalog.setCourses(catalog.getCoursesByNumber(Integer.parseInt(courseNumber.getText())));
             }
-            if(this.title.hasProperties()){
+            if (this.title.hasProperties()) {
                 catalog.setCourses(catalog.getCoursesByTitle(title.getText()));
             }
-        }
-        else{
+        } else {
             showAllCourses();
         }
         updateTable();
     }
 
-    public void showAllCourses(){
+    public void showAllCourses() {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         catalog.setCourses(session.createQuery("FROM Course", Course.class).list());
