@@ -6,6 +6,7 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import java.util.List;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -31,17 +32,10 @@ public class AddClassController {
     private DialogPane errorPopup;
 
     public void handleAdd() throws IOException {
-        String subject = null;
-        Integer courseNum = null;
-        String courseTitle = null;
-        try {
-            subject = mnemonic.getText().trim();
-            courseNum = Integer.parseInt(courseNumber.getText().trim());
-            courseTitle = title.getText().trim();
-        } catch (Exception e) {
-            handleError("Invalid inputs. Use only letters for the Subject and numbers for the Course Number.");
-            return;
-        }
+        String subject = mnemonic.getText().trim();
+        Integer courseNum = Integer.parseInt(courseNumber.getText().trim());
+        String courseTitle = title.getText().trim();
+
         if (subject.length() > 4 || subject.length() < 2) {
             handleError("Invalid subject mnemonic length (Must be 2-4 characters)");
         } else if (courseNum < 1000 || courseNum > 9999) {
@@ -60,7 +54,7 @@ public class AddClassController {
             session.beginTransaction();
             Query<Course> query = session.createQuery("FROM Course WHERE mnemonic = :subject " +
                     "AND courseNumber = :courseNum AND title = :courseTitle");
-            query.setParameter("subject", subject);
+            query.setParameter("subject", subject.toUpperCase());
             query.setParameter("courseNum", courseNum);
             query.setParameter("courseTitle", courseTitle);
             if(query.getSingleResultOrNull() != null){
@@ -68,7 +62,11 @@ public class AddClassController {
                 session.close();
                 return;
             }
-            Course added = new Course(subject, courseNum, courseTitle);
+            session.close();
+            java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Course added = new Course(subject.toUpperCase(), courseNum, courseTitle);
             session.persist(added);
             session.getTransaction().commit();
             session.close();
