@@ -29,12 +29,10 @@ public class AddClassController {
     public void handleAdd() throws IOException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Integer courseID = null;
         String subject = null;
         Integer courseNum = null;
         String courseTitle = null;
         try {
-            courseID = (int) Math.random() * 10000;
             subject = mnemonic.getText();
             courseNum = Integer.parseInt(courseNumber.getText());
             courseTitle = title.getText();
@@ -60,7 +58,7 @@ public class AddClassController {
                     return;
                 }
             }
-            Course added = new Course(courseID, subject, courseNum, courseTitle);
+            Course added = new Course(subject, courseNum, courseTitle);
             session.persist(added);
             session.getTransaction().commit();
             session.close();

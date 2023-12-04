@@ -30,8 +30,7 @@ public class Course {
     private double avgRating;
 
 
-    public Course(int courseID, String mnemonic, int courseNumber, String title) {
-        this.courseID = courseID;
+    public Course(String mnemonic, int courseNumber, String title) {
         this.mnemonic = mnemonic;
         this.courseNumber = courseNumber;
         this.title = title;
