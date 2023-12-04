@@ -40,6 +40,7 @@ public class AddClassController {
             courseTitle = title.getText();
         }catch(Exception e){
             handleError("Invalid inputs. Use only letters for the Subject and numbers for the Course Number.");
+            session.close();
             return;
         }
         if(subject.length() > 4 || subject.length() < 2){
@@ -61,7 +62,8 @@ public class AddClassController {
             }
             Course added = new Course(courseID, subject, courseNum, courseTitle);
             session.persist(added);
-            session.getTransaction().commit();session.close();
+            session.getTransaction().commit();
+            session.close();
             CourseReviewsApplication.switchScene("course-search.fxml", "Course Search");
             return;
         }
