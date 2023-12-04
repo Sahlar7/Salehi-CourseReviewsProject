@@ -52,6 +52,7 @@ public class AddClassController {
             for(int i = 0; i < subject.length(); i++){
                 if(Character.isDigit(subject.charAt(i))){
                     handleError("Invalid subject mnemonic. Use only letters.");
+                    return;
                 }
             }
             java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
