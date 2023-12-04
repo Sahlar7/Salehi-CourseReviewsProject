@@ -37,7 +37,7 @@ public class ReviewEditorController {
                 review.setComment(comment.getText());
                 review.setUser(CourseReviewsApplication.getThisUser());
                 review.setCourse(ReviewListController.getReviewedCourse());
-                session.save(review);
+                session.persist(review);
                 session.getTransaction().commit();
             }
             else {
