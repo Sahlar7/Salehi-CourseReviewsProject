@@ -11,10 +11,8 @@ import javafx.scene.input.MouseEvent;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.text.DecimalFormat;
-import java.util.*;
-
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 
 public class CourseSearchController {
@@ -84,7 +82,7 @@ public class CourseSearchController {
             ObservableList<Course> obsList = FXCollections.observableList(catalog.getCoursesInAlphabetMnemonicOrder());
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            for(Course c : obsList){
+            for (Course c : obsList) {
                 Query<Review> query = session.createQuery("FROM Review WHERE course = :course");
                 query.setParameter("course", c);
                 c.setAvgRating(calculateAvgRating(query.list()));
@@ -104,8 +102,8 @@ public class CourseSearchController {
             sum += r.getRating();
         }
         double avg = (double) sum / reviews.size();
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return decimalFormat.format(avg);
+        //DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return String.format("%.2f", avg);
     }
 
     public void handleSearchButton() {
