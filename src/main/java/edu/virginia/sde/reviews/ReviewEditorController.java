@@ -42,16 +42,22 @@ public class ReviewEditorController {
         if(!newReview){
             switch(review.getRating()){
                 case 1:
-                    rating.selectToggle(rating1);
+                    rating1.setSelected(true);
+                    break;
                 case 2:
-                    rating.selectToggle(rating2);
+                    rating2.setSelected(true);
+                    break;
                 case 3:
-                    rating.selectToggle(rating3);
+                    rating3.setSelected(true);
+                    break;
                 case 4:
-                    rating.selectToggle(rating4);
+                    rating4.setSelected(true);
+                    break;
                 case 5:
-                    rating.selectToggle(rating5);
+                    rating5.setSelected(true);
+                    break;
                 default:
+                    break;
 
             }
             comment.setText(review.getComment());

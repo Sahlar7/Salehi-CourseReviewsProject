@@ -33,9 +33,11 @@ public class ReviewListController {
     private static Course reviewedCourse;
 
     public void initialize(){
-        courseName.setText(reviewedCourse.getMnemonic() + " " + reviewedCourse.getCourseNumber() + ": " + reviewedCourse.getTitle());
-        avgRating.setText(reviewedCourse.getAvgRating()+"");
         getReviews();
+        courseName.setText(reviewedCourse.getMnemonic() + " " + reviewedCourse.getCourseNumber() + ": " + reviewedCourse.getTitle());
+        reviewedCourse.calculateAvgRating(reviews);
+        avgRating.setText(reviewedCourse.getAvgRating());
+
     }
     private void getReviews(){
         String hql = "from Review where course = :reviewedCourse";
