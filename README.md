@@ -3,7 +3,7 @@
 
 ## Authors
 1) Luke McMeans, cet3qt, [McMeans]
-2) Name, netid, [GitHub profile name]
+2) Nolan Hill, njq4gy, [nolanreedhill]
 3) Name, netid, [GitHub profile name]
 
 ## To Run
@@ -38,11 +38,12 @@ Before running, make sure you have the proper configurations for this project. T
 * Implementation for ```Catalog.java```
 * Refactored and assisted with the debugging of other classes
 
-### [Author 2 - replace this with their name]
+### [Author 2 - Nolan Hill]
 
-* Author 2 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
+* Handled setup and design of database. 
+* Implementation for ```login.fxml``` and ```create-account.fxml```, and the Implementation for their controller classes. 
+* Implementation for ```CourseReviewsApplication.java```
+* Assisted heavily with debugging and refactoring of other parts of the project. 
 
 ### [Author 3 - replace this with their name]
 
