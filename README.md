@@ -2,24 +2,41 @@
 # Homework 6 - Responding to Change
 
 ## Authors
-1) Name, netid, [GitHub profile name]
+1) Luke McMeans, cet3qt, [McMeans]
 2) Name, netid, [GitHub profile name]
 3) Name, netid, [GitHub profile name]
-4) Name, netid, [GitHub profile name]
 
 ## To Run
 
-[Add a brief description of which .java file to run, and what vm arguments are needed]
+As always, make sure to run ```./gradlew build``` in the command line before running for the first time.
+
+Before running, make sure you have the proper configurations for this project. The following how-to will be for the IntelliJ platform:
+
+(NOTE: PLEASE USE JAVA AND JAVAFX VERSION 17.0.9)
+
+* Open ```CourseReviewsApplication.java```
+* In the top right of IntelliJ, click the drop-down to the left of the run button and select "Edit configurations..." (see below)
+
+<img width="259" alt="image" src="https://github.com/cs-3140-fa23/hw6-hw6-cet3qt-njq4gy-rmh7ce/assets/121998941/a73198b8-b8e2-49db-88b8-f44e5b45df58">
+
+* Click the plus button and add a new Application
+* Name this "CourseReviewsApplication"
+* Click "Modify Options" and select "Add VM Options"
+* With the new section insert ```--module-path "[PATH TO JAVAFX LIB FOLDER]" --add-modules javafx.controls,javafx.fxml``` where "[PATH TO JAVAFX LIB FOLDER]" is the file path to the lib folder within your JavaFX directory
+* Fill the rest of inputs accordingly (see below)
+
+<img width="969" alt="image" src="https://github.com/cs-3140-fa23/hw6-hw6-cet3qt-njq4gy-rmh7ce/assets/121998941/e9b4fd8d-0095-49ff-927b-7bc9d60852a7">
+
+* Run the program as usual
 
 ## Contributions
 
-List the primary contributions of each author. It is recommended to update this with your contributions after each coding session.:
+### [Author 1 - Luke McMeans]
 
-### [Author 1 - replace this with their name]
-
-* Author 1 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
+* Implementation for ```course-search.fxml``` and ```CourseSearchController.java```
+* Implementation for ```add-class.fxml``` and ```AddClassController.java```
+* Implementation for ```Catalog.java```
+* Refactored and assisted with the debugging of other classes
 
 ### [Author 2 - replace this with their name]
 
@@ -30,12 +47,6 @@ List the primary contributions of each author. It is recommended to update this 
 ### [Author 3 - replace this with their name]
 
 * Author 3 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
-
-### [Author 4 - replace this with their name]
-
-* Author 4 contributions
 * as a bulleted list
 * each line starts with an asterisk and a space
 
