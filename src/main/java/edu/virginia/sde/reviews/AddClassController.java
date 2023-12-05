@@ -39,13 +39,13 @@ public class AddClassController {
             }
         }
         String subject = mnemonic.getText().trim().toUpperCase();
-        Integer courseNum = Integer.parseInt(courseNumber.getText().trim());
+        int courseNum = Integer.parseInt(courseNumber.getText().trim());
         String courseTitle = title.getText().trim();
         if (subject.length() > 4 || subject.length() < 2) {
             handleError("Invalid subject mnemonic length (Must be 2-4 characters)");
         } else if (courseNum < 1000 || courseNum > 9999) {
             handleError("Invalid course number (Must be within 1000-9999)");
-        } else if (courseTitle.length() < 1 || courseTitle.length() > 50) {
+        } else if (courseTitle.isEmpty() || courseTitle.length() > 50) {
             handleError("Invalid course title length (Must be 1-50 characters)");
         } else {
             for(int i = 0; i < subject.length(); i++){

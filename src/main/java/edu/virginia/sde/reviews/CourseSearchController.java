@@ -96,18 +96,6 @@ public class CourseSearchController {
         }
     }
 
-    /*private String calculateAvgRating(List<Review> reviews) {
-        if (reviews.isEmpty()) {
-            return "";
-        }
-        int sum = 0;
-        for (Review r : reviews) {
-            sum += r.getRating();
-        }
-        double avg = (double) sum / reviews.size();
-        return String.format("%.2f", avg);
-    }*/
-
     public void handleSearchButton() {
         if (tableView.getItems() != null) {
             catalog.setCourses(tableView.getItems());
