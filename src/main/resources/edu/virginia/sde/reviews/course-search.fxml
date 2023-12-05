@@ -31,6 +31,6 @@
       <Button layoutX="10.0" layoutY="366.0" mnemonicParsing="false" onAction="#addCourse" text="Add Course" />
       <Button layoutX="433.0" layoutY="366.0" mnemonicParsing="false" onAction="#myReviews" text="My Reviews" />
       <Button layoutX="525.0" layoutY="366.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
-      <Button layoutX="499.0" layoutY="25.0" mnemonicParsing="false" text="Clear Search" onAction="#initialize"/>
+      <Button layoutX="499.0" layoutY="25.0" mnemonicParsing="false" text="Clear Search" onAction="#clearSearch"/>
    </children>
 </AnchorPane>
