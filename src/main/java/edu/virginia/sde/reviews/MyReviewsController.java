@@ -36,7 +36,7 @@ public class MyReviewsController {
         String hql = "from Review where user=:user";
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = session.createQuery(hql, Review.class);
+        Query<Review> query = session.createQuery(hql, Review.class);
         query.setParameter("user", CourseReviewsApplication.getThisUser());
         reviews.addAll(query.getResultList());
         session.getTransaction().commit();

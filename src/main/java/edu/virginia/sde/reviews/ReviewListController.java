@@ -29,7 +29,7 @@ public class ReviewListController {
     private Button editReview;
     @FXML
     private Button deleteReview;
-    private ArrayList<Review> reviews = new ArrayList<>();
+    private final ArrayList<Review> reviews = new ArrayList<>();
     private static Course reviewedCourse;
 
     public void initialize(){
@@ -43,7 +43,7 @@ public class ReviewListController {
         String hql = "from Review where course = :reviewedCourse";
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = (session.createQuery(hql, Review.class));
+        Query<Review> query = (session.createQuery(hql, Review.class));
         query.setParameter("reviewedCourse", reviewedCourse);
         reviews.addAll(query.getResultList());
         session.getTransaction().commit();

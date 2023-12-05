@@ -40,25 +40,14 @@ public class ReviewEditorController {
 
     public void initialize(){
         if(!newReview){
-            switch(review.getRating()){
-                case 1:
-                    rating1.setSelected(true);
-                    break;
-                case 2:
-                    rating2.setSelected(true);
-                    break;
-                case 3:
-                    rating3.setSelected(true);
-                    break;
-                case 4:
-                    rating4.setSelected(true);
-                    break;
-                case 5:
-                    rating5.setSelected(true);
-                    break;
-                default:
-                    break;
-
+            switch (review.getRating()) {
+                case 1 -> rating1.setSelected(true);
+                case 2 -> rating2.setSelected(true);
+                case 3 -> rating3.setSelected(true);
+                case 4 -> rating4.setSelected(true);
+                case 5 -> rating5.setSelected(true);
+                default -> {
+                }
             }
             comment.setText(review.getComment());
         }
@@ -104,7 +93,7 @@ public class ReviewEditorController {
                 else if(rating.getSelectedToggle().equals(rating5))
                     review.setRating(5);
                 review.setComment(comment.getText());
-                session.update(review);
+                session.merge(review);
                 session.getTransaction().commit();
             }
             session.close();
