@@ -12,19 +12,12 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 
 public class CourseSearchController {
 
     @FXML
     private TableView<Course> tableView;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
-    private Button logOutButton;
 
     @FXML
     private TextField mnemonic;
@@ -35,7 +28,7 @@ public class CourseSearchController {
     @FXML
     private TextField title;
 
-    private Catalog catalog = new Catalog();
+    private final Catalog catalog = new Catalog();
 
     private Course selected;
 
