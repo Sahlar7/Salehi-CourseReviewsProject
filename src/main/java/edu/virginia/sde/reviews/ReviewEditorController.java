@@ -1,5 +1,6 @@
 package edu.virginia.sde.reviews;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -32,6 +33,8 @@ public class ReviewEditorController {
     private RadioButton rating4;
     @FXML
     private RadioButton rating5;
+    @FXML
+    private Button back;
 
 
     private static Review review;
@@ -107,5 +110,9 @@ public class ReviewEditorController {
     }
     public static void setReview(Review r) {
         review = r;
+    }
+
+    public void backToCourse() throws IOException {
+        CourseReviewsApplication.switchScene("review-list.fxml", ReviewListController.getReviewedCourse().getMnemonic() + " " + ReviewListController.getReviewedCourse().getCourseNumber());
     }
 }
