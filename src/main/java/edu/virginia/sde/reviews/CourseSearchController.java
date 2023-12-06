@@ -178,6 +178,7 @@ public class CourseSearchController {
         errorPopup.setContentText("Use 2-4 letters for Subject, 4 letters for Number, and 1-50 characters for Title.");
         errorPopup.setVisible(true);
         okButton.setVisible(true);
+        clearSearch();
     }
 
     public void handleErrorClose(){
