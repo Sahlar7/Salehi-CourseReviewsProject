@@ -4,7 +4,7 @@
 ## Authors
 1) Luke McMeans, cet3qt, [McMeans]
 2) Nolan Hill, njq4gy, [nolanreedhill]
-3) Name, netid, [GitHub profile name]
+3) Sahlar Salehi, rmh7ce, [Sahlar7]
 
 ## To Run
 
@@ -45,7 +45,11 @@ Before running, make sure you have the proper configurations for this project. T
 * Implementation for ```CourseReviewsApplication.java```
 * Assisted heavily with debugging and refactoring of other parts of the project. 
 
-### [Author 3 - replace this with their name]
+### [Author 3 - Sahlar Salehi]
+* Implementation for ```review-list.fxml``` and ```ReviewListController.java```
+* Implementation for ```my-reviews.fxml``` and ```MyReviewsController.java```
+* Implementation for ```review-editor.fxml``` and ```ReviewEditorController.java```
+* Assisted in debugging/refactoring other parts of project
 
 * Author 3 contributions
 * as a bulleted list

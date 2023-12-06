@@ -95,6 +95,8 @@ public class ReviewListController {
         session.close();
         reviews.clear();
         getReviews();
+        reviewedCourse.calculateAvgRating(reviews);
+        avgRating.setText(reviewedCourse.getAvgRating());
     }
     public static void setReviewedCourse(Course course){
         reviewedCourse = course;
