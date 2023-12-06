@@ -95,7 +95,7 @@ public class CourseSearchController {
     }
 
     public void handleSearchButton() {
-        if (tableView.getItems() == null || tableView.getItems().isEmpty() || !validInputs()) {
+        if (!validInputs()) {
             return;
         }
         if (!this.mnemonic.getText().isEmpty() || !this.courseNumber.getText().isEmpty() || !this.title.getText().isEmpty()) {
