@@ -3,9 +3,7 @@ package edu.virginia.sde.reviews;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -26,6 +24,12 @@ public class CourseSearchController {
 
     @FXML
     private TextField title;
+
+    @FXML
+    private Button okButton;
+
+    @FXML
+    private DialogPane errorPopup;
 
     private Catalog allCourses = new Catalog();
 
@@ -96,6 +100,7 @@ public class CourseSearchController {
 
     public void handleSearchButton() {
         if (!validInputs()) {
+            handleError();
             return;
         }
         if (!this.mnemonic.getText().isEmpty() || !this.courseNumber.getText().isEmpty() || !this.title.getText().isEmpty()) {
@@ -167,6 +172,17 @@ public class CourseSearchController {
 
     public void myReviews() throws IOException {
         CourseReviewsApplication.switchScene("my-reviews.fxml", "My Reviews");
+    }
+
+    private void handleError() {
+        errorPopup.setContentText("Use 2-4 letters for Subject, 4 letters for Number, and 1-50 characters for Title.");
+        errorPopup.setVisible(true);
+        okButton.setVisible(true);
+    }
+
+    public void handleErrorClose(){
+        errorPopup.setVisible(false);
+        okButton.setVisible(false);
     }
 
 }
