@@ -51,10 +51,6 @@ Before running, make sure you have the proper configurations for this project. T
 * Implementation for ```review-editor.fxml``` and ```ReviewEditorController.java```
 * Assisted in debugging/refactoring other parts of project
 
-* Author 3 contributions
-* as a bulleted list
-* each line starts with an asterisk and a space
-
 ## Issues
 
 List any known issues (bugs, incorrect behavior, etc.) at the time of submission.
