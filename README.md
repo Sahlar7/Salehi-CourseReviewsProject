@@ -4,7 +4,7 @@
 ## Authors
 1) Luke McMeans, cet3qt, [McMeans]
 2) Nolan Hill, njq4gy, [nolanreedhill]
-3) Name, netid, [GitHub profile name]
+3) Sahlar Salehi, rmh7ce, [Sahlar7]
 
 ## To Run
 
